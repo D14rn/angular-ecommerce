@@ -7,11 +7,7 @@ import { Product } from '../../models/product';
   selector: 'app-product-details',
   standalone: true,
   imports: [],
-  // TODO: create a product card component
-  template: `
-    <p>{{product?.name}}</p>
-    <p>{{product?.description}}</p>
-  `,
+  templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css'
 })
 export class ProductDetailsComponent {
@@ -22,6 +18,6 @@ export class ProductDetailsComponent {
 
   constructor () {
     this.productId = this.route.snapshot.params["id"];
-    this.productService.getProductDetailsById(this.productId).then(product => this.product = product);
+    this.productService.getProductDetailsById(this.productId).then(product => {this.product = product});
   }
 }

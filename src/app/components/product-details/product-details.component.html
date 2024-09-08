@@ -1,0 +1,21 @@
+@if (product) {
+    <div class="container">
+        <div class="row">
+            <div class=' col d-flex justify-content-center' style="min-width: 300px;">
+                <img [src]=product.mainImage style="object-fit: contain; max-width: 100%"/>
+            </div>
+            <div class="col">
+                <table class="table table-bordered table-hover table-responsive" style="min-width: 300px;">
+                    <tbody>
+                        <tr>
+                            <td>Name</td><td>{{product.name}}</td>
+                        </tr>
+                        <tr>
+                            <td>Description</td><td>{{product.description}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}

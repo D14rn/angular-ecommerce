@@ -12,7 +12,6 @@ import { ProductCardComponent } from '../product-card/product-card.component';
   template: `
     <div class="row p-2 g-4 mx-auto mt-1 product-list">
       @for (product of productList; track product.id) {
-        <!-- <li><a routerLink='/details/{{product.id}}'>{{product.name}}</a></li> -->
         <div class="col-12 col-md-6">
           <app-product-card [product]=product/>
         </div>
