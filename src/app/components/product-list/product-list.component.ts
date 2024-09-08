@@ -8,7 +8,6 @@ import { ProductCardComponent } from '../product-card/product-card.component';
   selector: 'app-product-list',
   standalone: true,
   imports: [RouterLink, ProductCardComponent],
-  // TODO: create a product card component
   template: `
     <div class='d-flex flex-column align-items-center'>
       <h2>{{ productList ? 'Page ' + productService.pageNum : 'No more products' }}</h2>

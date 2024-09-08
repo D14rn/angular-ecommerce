@@ -27,4 +27,6 @@ import { CartModalComponent } from "./components/cart-modal/cart-modal.component
     </main>`,
   styleUrl: './app.component.css'
 })
-export class AppComponent {}
+export class AppComponent {
+  title = 'E-commerce'
+}

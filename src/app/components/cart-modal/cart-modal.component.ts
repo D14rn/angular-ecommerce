@@ -2,7 +2,6 @@ import { Component, inject, TemplateRef } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CartService } from '../../services/cart.service';
 import { CartItem } from '../../models/cart-item';
-import { CartInfo } from '../../models/cart-info';
 
 @Component({
   selector: 'app-cart-modal',
