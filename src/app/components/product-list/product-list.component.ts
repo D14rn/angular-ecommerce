@@ -2,21 +2,22 @@ import { Component, inject } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../models/product';
 import { RouterLink } from '@angular/router';
+import { ProductCardComponent } from '../product-card/product-card.component';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, ProductCardComponent],
   // TODO: create a product card component
   template: `
-    <p>
-      product-list works!
-    </p>
-    <ul>
+    <div class="row p-2 g-4 mx-auto mt-1 product-list">
       @for (product of productList; track product.id) {
-        <li><a routerLink='/details/{{product.id}}'>{{product.name}}</a></li>
+        <!-- <li><a routerLink='/details/{{product.id}}'>{{product.name}}</a></li> -->
+        <div class="col-12 col-md-6">
+          <app-product-card [product]=product/>
+        </div>
       }
-    </ul>
+    </div>
   `,
   styleUrl: './product-list.component.css'
 })
