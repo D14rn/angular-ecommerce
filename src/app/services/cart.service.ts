@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
 import { CartItem } from '../models/cart-item';
 import { CartInfo } from '../models/cart-info';
+import { Product } from '../models/product';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  cartItems: CartItem[] = [
-    { product: { id: "30e99341347c49043afec20f701", name: "Produit 1", price: 100, quantity: 3, mainImage: "https://dummyimage.com/600x400/000/fff", category: 1, description: "LoL this is a product description", ratingsAverage: 5}, quantity: 1},
-    { product: { id: "908dbb2b470ed9c51afec20f701", name: "Produit 2", price: 1000, quantity: 1, mainImage: "https://dummyimage.com/600x400/000/fff", category: 1, description: "LoL this is a product description", ratingsAverage: 4}, quantity: 2}
-  ];
+  cartItems: CartItem[] = [];
   constructor() { }
 
   getCartItems(): CartItem[] {
@@ -26,6 +24,47 @@ export class CartService {
 
       return accumulator;
 
-  }, {itemCount: 0, totalPrice: 0});
+    }, {itemCount: 0, totalPrice: 0});
+  }
+
+  addCartItem(cartItem: CartItem) {
+    if (cartItem.quantity < 1) {
+      return;
+    }
+
+    const available = this.calculateAvailable(cartItem);
+
+    if (available >= 0) {
+      const res = this.findCartItemIndex(cartItem);
+      if (res >= 0) {
+        this.cartItems[res].quantity += cartItem.quantity;
+      }
+      else {
+        this.cartItems.push(cartItem);
+      }
+    }
+  }
+
+  private findCartItem(cartItem: CartItem) {
+    return this.cartItems.find((elem) => {
+      return elem.product.id == cartItem.product.id;
+    })
+  }
+
+  private findCartItemIndex(cartItem: CartItem) {
+    const res = this.cartItems.findIndex((elem) => {
+      return elem.product.id == cartItem.product.id;
+    })
+
+    return res;
+  }
+
+  calculateAvailable = (cartItem: CartItem) => {
+    const res = this.findCartItem(cartItem);
+
+    if (res) {
+      return res.product.quantity - (res.quantity + cartItem.quantity);
+    }
+      return cartItem.product.quantity - cartItem.quantity
   }
 }
