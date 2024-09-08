@@ -7,15 +7,20 @@ import { CartModalComponent } from "./components/cart-modal/cart-modal.component
   standalone: true,
   imports: [RouterOutlet, RouterLink, CartModalComponent],
   template: `
-    <nav>
-      <ul>
-        <li>
-          <a routerLink="/">Home</a>
-        </li>
-      </ul>
+    <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
+      <div class="container">
+        <a routerLink="/" class="navbar-brand" href="#">E-commerce</a>
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a routerLink="/" class="nav-link">Home</a>
+            </li>
+          </ul>
+        </div>
+        <app-cart-modal/>
+      </div>
     </nav>
     <main>
-      <app-cart-modal/>
       <section class="content">
         <router-outlet/>
       </section>
