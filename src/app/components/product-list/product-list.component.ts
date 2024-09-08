@@ -10,6 +10,24 @@ import { ProductCardComponent } from '../product-card/product-card.component';
   imports: [RouterLink, ProductCardComponent],
   // TODO: create a product card component
   template: `
+    <div class='d-flex flex-column align-items-center'>
+      <h2>{{ productList ? 'Page ' + productService.pageNum : 'No more products' }}</h2>
+      <div class='d-flex justify-content-center gap-2'>
+        @if (productService.pageNum > 1) {
+          <button class='btn btn-primary' (click)=getPreviousPage()>&laquo; 
+            @if (productList) {
+              Previous
+            }
+            @else {
+              Go back
+            }
+            </button>
+        }
+        @if(productList) {
+          <button class="btn btn-primary" (click)=getNextPage()>Next &raquo;</button>
+        }
+      </div>
+    </div>
     <div class="row p-2 g-4 mx-auto mt-1 product-list">
       @for (product of productList; track product.id) {
         <div class="col-12 col-md-6">
@@ -24,21 +42,23 @@ export class ProductListComponent {
   productService: ProductService = inject(ProductService);
   productList: Product[] | undefined;
   filteredProductList: Product[] | undefined;
-  pageNum = 0;
 
   constructor() {
-    this.getNextPage();
+    this.getPage(this.productService.pageNum);
   }
 
   getNextPage() {
-    this.getPage(++this.pageNum);
+    this.getPage(++this.productService.pageNum);
   }
 
   getPreviousPage() {
-    this.getPage(--this.pageNum);
+    this.getPage(--this.productService.pageNum);
   }
 
-  getPage(pageNum: number) {
+  getPage(pageNum: number | null) {
+    if (!pageNum) {
+      pageNum = this.productService.pageNum;
+    }
     this.productService.getProductListByPage(pageNum).then((productList) => {
       this.productList = productList;
     });
