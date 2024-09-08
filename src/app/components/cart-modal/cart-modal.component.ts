@@ -23,7 +23,6 @@ export class CartModalComponent {
   modalService = inject(NgbModal);
   cartService = inject(CartService);
   cartItems: CartItem[] = [];
-  cartInfo: CartInfo | undefined;
 
 	open(content: TemplateRef<any>) {
 		this.modalService.open(content);
@@ -31,6 +30,5 @@ export class CartModalComponent {
 
   ngOnInit() {
     this.cartItems = this.cartService.getCartItems();
-    this.cartInfo = this.cartService.getCartInfo();
   }
 }
