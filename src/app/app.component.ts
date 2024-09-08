@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet, RouterLink } from '@angular/router';
+import { CartModalComponent } from "./components/cart-modal/cart-modal.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink],
+  imports: [RouterOutlet, RouterLink, CartModalComponent],
   template: `
     <nav>
       <ul>
@@ -14,6 +15,7 @@ import { RouterOutlet, RouterLink } from '@angular/router';
       </ul>
     </nav>
     <main>
+      <app-cart-modal/>
       <section class="content">
         <router-outlet/>
       </section>
