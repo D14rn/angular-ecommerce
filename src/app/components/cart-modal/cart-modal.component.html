@@ -20,6 +20,11 @@
 						<td class='text-nowrap'>{{item.product.name}}</td>
 						<td>{{item.product.price}}</td>
 						<td>{{item.quantity}}</td>
+						<td>
+							<button type="button" class="btn btn-danger" (click)="cartService.deleteCartItem(item)">
+								<img src="/delete-icon.svg" style="height: 2.5ex;">
+							</button>
+						</td>
                     </tr>
 				}
             </tbody>

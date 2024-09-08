@@ -44,6 +44,14 @@ export class CartService {
       }
     }
   }
+  
+  deleteCartItem(cartItem: CartItem) {
+    const res = this.findCartItemIndex(cartItem);
+
+    if (res >= 0) {
+      this.cartItems.splice(res, 1);
+    }
+  }
 
   private findCartItem(cartItem: CartItem) {
     return this.cartItems.find((elem) => {
