@@ -30,4 +30,4 @@
 		<button type="button" class="btn btn-outline-secondary" (click)="modal.close('Save click')">Order</button>
 	</div>
 </ng-template>
-<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Cart {{": " + cartService.getCartInfo().itemCount}}</button>
+<button class="btn btn-primary" (click)="open(content)">Your cart <span class="mx-1 badge bg-secondary">{{cartService.getCartInfo().itemCount}}</span></button>
