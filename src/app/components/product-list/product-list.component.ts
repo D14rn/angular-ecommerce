@@ -3,11 +3,12 @@ import { ProductService } from '../../services/product.service';
 import { Product } from '../../models/product';
 import { RouterLink } from '@angular/router';
 import { ProductCardComponent } from './product-card/product-card.component';
+import { ProductPaginationComponent } from "./product-pagination/product-pagination.component";
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [RouterLink, ProductCardComponent],
+  imports: [RouterLink, ProductCardComponent, ProductPaginationComponent],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
 })

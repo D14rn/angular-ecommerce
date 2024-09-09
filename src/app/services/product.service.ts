@@ -30,7 +30,6 @@ export class ProductService {
   }
 
   async getProductListByPage(pageNum: number): Promise<Product[] | undefined> {
-    console.log(`Fetching product list with page number: "${pageNum}"`);
     // const url = `${this.baseUrl}?limit=6&page=${pageNum}`;
     // const data = await fetch(url);
     // return await data.json() ?? {};
@@ -42,8 +41,11 @@ export class ProductService {
     return undefined;
   }
 
+  hasNextProductPage(): boolean {
+    return this.products.has(this.pageNum+1);
+  }
+
   async getProductDetailsById(id: string): Promise<Product | undefined> {
-    console.log(`Fetching product with id: "${id}"`);
     // const url = `${this.baseUrl}${id}`;
     // const data = await fetch(url);
     // return await data.json() ?? {};

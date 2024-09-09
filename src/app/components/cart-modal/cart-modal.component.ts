@@ -8,15 +8,7 @@ import { CartItem } from '../../models/cart-item';
   standalone: true,
   imports: [],
   templateUrl: './cart-modal.component.html',
-  styles: `
-    .cart-item-image {
-      height: 2em;
-    }
-    .cart-table-row {
-      line-height: 2em;
-      height: 2em;
-    }
-  `
+  styleUrl: './cart-modal.component.css'
 })
 export class CartModalComponent {
   modalService = inject(NgbModal);
