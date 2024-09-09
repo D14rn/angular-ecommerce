@@ -3,12 +3,7 @@
     <div class='d-flex justify-content-center gap-2'>
         @if (productService.pageNum > 1) {
         <button class='btn btn-primary' (click)=handleGetPreviousPage()>&laquo;
-            @if (productList) {
-            Previous
-            }
-            @else {
-            Go back
-            }
+            {{(productList) ? 'Previous': 'Go back'}}
         </button>
         }
         @if(productService.hasNextProductPage()) {
