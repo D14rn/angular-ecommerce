@@ -7,7 +7,6 @@ import { CartInfo } from '../models/cart-info';
 })
 export class CartService {
   cartItems: CartItem[] = [];
-  constructor() { }
 
   getCartItems(): CartItem[] {
     return this.cartItems;
@@ -32,16 +31,15 @@ export class CartService {
     }
 
     const available = this.calculateAvailable(cartItem);
+    
+    if (available < 0) return;
 
-    if (available >= 0) {
-      const res = this.findCartItemIndex(cartItem);
-      if (res >= 0) {
-        this.cartItems[res].quantity += cartItem.quantity;
-      }
-      else {
-        this.cartItems.push(cartItem);
-      }
+    const res = this.findCartItemIndex(cartItem);
+    if (res >= 0) {
+      this.cartItems[res].quantity += cartItem.quantity;
+      return;
     }
+    this.cartItems.push(cartItem);
   }
   
   deleteCartItem(cartItem: CartItem) {
@@ -59,11 +57,9 @@ export class CartService {
   }
 
   private findCartItemIndex(cartItem: CartItem) {
-    const res = this.cartItems.findIndex((elem) => {
+    return this.cartItems.findIndex((elem) => {
       return elem.product.id == cartItem.product.id;
     })
-
-    return res;
   }
 
   calculateAvailable = (cartItem: CartItem) => {
@@ -72,6 +68,6 @@ export class CartService {
     if (res) {
       return res.product.quantity - (res.quantity + cartItem.quantity);
     }
-      return cartItem.product.quantity - cartItem.quantity
+    return cartItem.product.quantity - cartItem.quantity;
   }
 }
